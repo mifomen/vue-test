@@ -8,7 +8,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import FetchTeacherList from './components/FetchTeachers.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
     HelloWorld,
     FetchTeacherList

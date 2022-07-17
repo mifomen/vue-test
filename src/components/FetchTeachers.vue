@@ -1,67 +1,46 @@
 <template>
-<div id="tacherList">
-  <h1>Bitcoin Price Index</h1>
-
-  <section v-if="errored">
-    <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
-  </section>
-
-  <section v-else>
-    <div v-if="loading">Loading...</div>
-
-    <div
-      v-else
-      v-for="elem in teacherElements" :key="elem.id"
-      class="currency"
-    >
-    <li>
-      {{ elem.fio }}:
-      <span class="lighten">
-        <strong>dolzhnost</strong> {{ elem.dolzhnost }} <br>
-        <strong>directionStudy</strong> {{ elem.directionStudy }} <br>
-        <strong>levelStudy</strong> {{ elem.levelStudy }} <br>
-        <strong>workExperienceInYearStart</strong> {{ workExperienceInYearStart }} <br>
-
-        <!-- <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }} -->
-      </span>
-    </li>
-    </div>
-
-  </section>
-</div>
+  <div id="tacherList"> {{ title }}</div>
+  <ul>
+    <li>teacherElements</li>
+  </ul>
 </template>
 
 <script>
 export default {
   name: 'FetchTeacherList',
   el: '#tacherList',
-  data () {
-    return {
+  data: function() {
+  return {
+      title: 'Teachers list',
       teacherElements: null,
-      loading: true,
-      errored: false
+      teacherElements_URL: '../teachers.json',
+      users: []
     }
   },
-  filters: {
-    fio (value) {
-      return value.toFixed(2)
-    }
+  mounted() {
+     //get users
+     this.getUsers()
   },
-  mounted () {
-    fetch('../teachers.json')
-      .then(response => {
-        this.elem = response.data.json()
-      })
-      .catch(error => {
-        console.log(error)
-        this.errored = true
-      })
-      .finally(() => this.loading = false)
+  methods: {
+    async getUsers () {
+      try {
+        const response = await fetch(this.teacherElements_URL)
+        const res = await response.json()
+        this.users.push(...res)
+      }
+      catch(error) {
+        this.errors.push(error)
+
+      }
+    }
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+h1 {
+  color: blue;
+}
 </style>
