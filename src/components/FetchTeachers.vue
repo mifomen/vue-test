@@ -1,46 +1,53 @@
 <template>
-  <div id="tacherList"> {{ title }}</div>
+  <h1> text </h1>
+  <span>{ teacherList }</span>
   <ul>
-    <li>teacherElements</li>
+    <li v-for="teacherItem in teacherList" :key="teacherItem.id">
+      counter = {{counterIncrease()}} teacherItem.fio = {{teacherItem.fio}}
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
-  name: 'FetchTeacherList',
-  el: '#tacherList',
+  name: 'FetchTeachers',
+  el: "#FetchTeachers",
   data: function() {
-  return {
-      title: 'Teachers list',
-      teacherElements: null,
-      teacherElements_URL: '../teachers.json',
-      users: []
-    }
-  },
-  mounted() {
-     //get users
-     this.getUsers()
+    return  {
+      teacherList: null,
+      counter: 10
+     }
   },
   methods: {
-    async getUsers () {
-      try {
-        const response = await fetch(this.teacherElements_URL)
-        const res = await response.json()
-        this.users.push(...res)
-      }
-      catch(error) {
-        this.errors.push(error)
-
-      }
+    counterIncrease(){
+      return this.counter++
     }
-
+  },
+  created() {
+    const URL = 'https://raw.githubusercontent.com/mifomen/vue-test/master/src/teachers.json'
+    try {
+      fetch(URL)
+      .then(response => response.json())
+      .then(json => this.teacherList = json)
+    } catch (errors ) {
+      console.error('errors ',errors)
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  color: blue;
+ul {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: off;
+  padding: 0;
+  margin: 0;
+}
+
+li::marker {
+  content: ""
 }
 </style>

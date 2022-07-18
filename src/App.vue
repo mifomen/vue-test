@@ -1,17 +1,17 @@
 <template>
   <HelloWorld msg="Welcome Mifomen to Your Vue.js App"/>
-  <FetchTeacherList/>
+  <FetchTeachers/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import FetchTeacherList from './components/FetchTeachers.vue'
+import FetchTeachers from './components/FetchTeachers.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
-    FetchTeacherList
+    FetchTeachers,
   }
 }
 </script>
