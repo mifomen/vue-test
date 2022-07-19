@@ -1,6 +1,6 @@
 <template>
   <h1>{{ title }} </h1>
-  <CounterItems/>
+  <!-- <CounterItems/> -->
   <ul>
     <template v-for="(teacherItem) in teacherList" v-bind:key="teacherItem.id" >
       <!-- teacherItem.classNOO === 1 && teacherItem.classOOO === 3 ||  -->
@@ -58,20 +58,16 @@
     </template>
   </ul>
 
-<paginate>
-  v-model="page"
-</paginate>
+  <button class="btn">123</button>
 </template>
 
 <script>
-import CounterItems from './counter.vue'
-import Paginate from "./Paginate.vue";
 
 
 export default {
   name: "FetchTeachers",
   components: {
-    CounterItems
+
   },
   el: "#FetchTeachers",
   data: function () {

@@ -1,20 +1,10 @@
 <template>
-  <HelloWorld msg="Welcome Mifomen to Your Vue.js App"/>
-  <FetchTeachers/>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-import FetchTeachers from './components/FetchTeachers.vue'
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld,
-    FetchTeachers,
-  }
-}
-</script>
 
 <style>
 #app {
@@ -23,9 +13,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
-h1 {
-  color:red;
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
