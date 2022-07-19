@@ -58,11 +58,15 @@
     </template>
   </ul>
 
+<paginate>
+  v-model="page"
+</paginate>
 </template>
 
 <script>
 import CounterItems from './counter.vue'
-// import 'Vue' from 'vue'
+import Paginate from "./Paginate.vue";
+
 
 export default {
   name: "FetchTeachers",
